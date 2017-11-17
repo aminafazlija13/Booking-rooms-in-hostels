@@ -1,0 +1,52 @@
+CREATE TABLE vrstaSobe (
+    id_vrsta_sobe int(11) NOT null PRIMARY KEY AUTO_INCREMENT,
+    naziv_sobe varchar(128) NOT null,
+    broj_kreveta int(11) NOT null,
+    klima boolean NOT null,
+    balkon boolean NOT null,
+    internet boolean NOT null,
+    cijena int(11) NOT null
+);
+
+CREATE TABLE soba (
+    id_soba int(11) NOT null PRIMARY KEY AUTO_INCREMENT,
+    slika_sobe longblob NOT null,
+    opis_sobe varchar(128) NOT null,
+    id_vrsta_sobe int(11) NOT null,
+    id_hostela int(11) NOT null
+);
+
+CREATE TABLE rezervacija (
+    id_rezervacije int(11) NOT null PRIMARY KEY AUTO_INCREMENT,
+    id_klijent int(11) NOT null,
+    id_sobe varchar(128) NOT null,
+    datum_prijave datetime NOT null,
+    datum_odjave datetime NOT null,
+    broj_nocenja int(11) NOT null
+);
+
+<?php
+	date_default_timezone_set('Europe/Copenhagen');
+?>
+
+CREATE TABLE placanje (
+    id_uplata int(11) NOT null PRIMARY KEY AUTO_INCREMENT,
+    ime varchar(128) NOT null,
+    prezime varchar(128) NOT null,
+    id_rezervacije int(11) NOT null,
+    broj_kartice int(20) NOT null,
+    visina_predujma int(11) NOT null
+);
+
+CREATE TABLE klijent (
+    id_klijent int(11) NOT null PRIMARY KEY AUTO_INCREMENT,
+    username varchar(128) NOT null,
+    ime varchar(128) NOT null,
+    prezime varchar(128) NOT null,
+    ulica varchar(128) NOT null,
+    postanski_broj int(11) NOT null,
+    grad varchar(128) NOT null,
+    email varchar(128) NOT null,
+    broj_telefona int(11) NOT null,
+    pwd varchar(128) NOT null
+);
